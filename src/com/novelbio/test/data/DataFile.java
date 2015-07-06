@@ -12,7 +12,7 @@ public class DataFile {
 	
 	public DataFile(){
 		try {
-			fileReader = new FileReader("");
+			fileReader = new FileReader("/home/novelbio/upload/testData/CYR32_2_filtered_1.fq");
 			bufferedReader = new BufferedReader(fileReader);
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
@@ -46,4 +46,14 @@ public class DataFile {
 			}
 		}
 	} 
+	
+	public long lineCount() throws IOException{
+		long no = 0;
+		String str =  bufferedReader.readLine();
+		while (str != null && !"".equals(str)) {
+			no++;
+			str = bufferedReader.readLine();
+		}
+		return no;
+	}
 }

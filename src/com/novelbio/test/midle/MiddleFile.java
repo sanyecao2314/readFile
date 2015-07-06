@@ -4,6 +4,8 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.HashSet;
+import java.util.Set;
 
 public class MiddleFile {
 
@@ -12,7 +14,7 @@ public class MiddleFile {
 	
 	public MiddleFile(){
 		try {
-			fileReader = new FileReader("");
+			fileReader = new FileReader("/home/novelbio/upload/testData/CYR32_2_1.blast.txt");
 			bufferedReader = new BufferedReader(fileReader);
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
@@ -38,7 +40,7 @@ public class MiddleFile {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		return temp.split("")[0];
+		return temp.split("	")[0];
 	}
 	
 	public void close(){
@@ -59,4 +61,27 @@ public class MiddleFile {
 		}
 	} 
 	
+	public long realLineCount() throws IOException{
+		long no = 0;
+		String str =  bufferedReader.readLine();
+		while (str != null && !"".equals(str)) {
+			no++;
+			str = bufferedReader.readLine();
+		}
+		return no;
+	}
+	
+	
+	public long lineCount() throws IOException{
+		Set<String> setIdName = new HashSet<>();
+		String str  = "";
+		while (true) {
+			str = getIdName();
+			if (str == null || "".equals(str)) {
+				break;
+			}
+			setIdName.add(str);
+		}
+		return setIdName.size() * 4;
+	}
 }
