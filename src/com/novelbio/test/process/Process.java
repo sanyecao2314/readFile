@@ -22,7 +22,7 @@ public class Process {
 		try {
 			while (true) {
 				dataLine = dataFile.readLine();
-				if (isnull(middleIdName) && isnull(dataLine)) {
+				if (isnull(dataLine)) {
 					break;
 				}
 				try {
